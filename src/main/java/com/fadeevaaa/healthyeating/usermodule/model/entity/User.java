@@ -1,5 +1,6 @@
 package com.fadeevaaa.healthyeating.usermodule.model.entity;
 
+import com.fadeevaaa.healthyeating.usermodule.model.enums.Purpose;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,7 +14,10 @@ public class User {
     private byte age;
     private short weight;
     private short height;
-    private String purpose;
+    @Enumerated(EnumType.STRING)
+    private Purpose purpose;
+    @Column(name = "daily_norm")
+    double dailyNorm;
 
     public User() {
     }
@@ -66,11 +70,19 @@ public class User {
         this.height = height;
     }
 
-    public String getPurpose() {
+    public Purpose getPurpose() {
         return purpose;
     }
 
-    public void setPurpose(String purpose) {
+    public void setPurpose(Purpose purpose) {
         this.purpose = purpose;
+    }
+
+    public double getDailyNorm() {
+        return dailyNorm;
+    }
+
+    public void setDailyNorm(double dailyNorm) {
+        this.dailyNorm = dailyNorm;
     }
 }
