@@ -17,7 +17,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Purpose purpose;
     @Column(name = "daily_norm")
-    double dailyNorm;
+    short dailyNorm;
 
     public User() {
     }
@@ -78,11 +78,11 @@ public class User {
         this.purpose = purpose;
     }
 
-    public double getDailyNorm() {
+    public short getDailyNorm() {
         return dailyNorm;
     }
 
-    public void setDailyNorm(double dailyNorm) {
+    public void setDailyNorm(short dailyNorm) {
         this.dailyNorm = dailyNorm;
     }
 }
