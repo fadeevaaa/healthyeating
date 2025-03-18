@@ -1,0 +1,10 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/healthy_eating
+    username: postgres
+    password: fadeevaaa
+jpa:
+  hibernate:
+    ddl-auto: update
