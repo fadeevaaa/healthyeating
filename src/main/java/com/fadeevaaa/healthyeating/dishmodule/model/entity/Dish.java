@@ -17,12 +17,6 @@ public class Dish {
     private short numberOfCaloriesPerBatch;
     @Embedded
     private Nutrient nutrient;
-//    @ManyToMany()
-//    @JoinTable(name = "meal_dish",
-//            joinColumns = @JoinColumn(name = "dish_id"),
-//            inverseJoinColumns = @JoinColumn(name = "meal_id")
-//    )
-//    private List<Meal> meals = new ArrayList<>();
 
     public Dish() {
     }
