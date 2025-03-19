@@ -1,6 +1,10 @@
 package com.fadeevaaa.healthyeating.dishmodule.model.entity;
 
+import com.fadeevaaa.healthyeating.mealmodule.module.entity.Meal;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "dishes")
@@ -13,6 +17,12 @@ public class Dish {
     private short numberOfCaloriesPerBatch;
     @Embedded
     private Nutrient nutrient;
+//    @ManyToMany()
+//    @JoinTable(name = "meal_dish",
+//            joinColumns = @JoinColumn(name = "dish_id"),
+//            inverseJoinColumns = @JoinColumn(name = "meal_id")
+//    )
+//    private List<Meal> meals = new ArrayList<>();
 
     public Dish() {
     }

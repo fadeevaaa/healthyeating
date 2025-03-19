@@ -1,7 +1,11 @@
 package com.fadeevaaa.healthyeating.usermodule.model.entity;
 
+import com.fadeevaaa.healthyeating.mealmodule.module.entity.Meal;
 import com.fadeevaaa.healthyeating.usermodule.model.enums.Purpose;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -18,6 +22,16 @@ public class User {
     private Purpose purpose;
     @Column(name = "daily_norm")
     short dailyNorm;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Meal> meals = new ArrayList<>();
+
+    public List<Meal> getMeals() {
+        return meals;
+    }
+
+    public void setMeals(List<Meal> meals) {
+        this.meals = meals;
+    }
 
     public User() {
     }
