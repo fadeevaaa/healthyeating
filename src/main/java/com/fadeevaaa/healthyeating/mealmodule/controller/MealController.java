@@ -1,6 +1,5 @@
 package com.fadeevaaa.healthyeating.mealmodule.controller;
 
-import com.fadeevaaa.healthyeating.dishmodule.model.entity.Dish;
 import com.fadeevaaa.healthyeating.mealmodule.module.entity.Meal;
 import com.fadeevaaa.healthyeating.mealmodule.service.MealService;
 import org.springframework.http.HttpStatus;

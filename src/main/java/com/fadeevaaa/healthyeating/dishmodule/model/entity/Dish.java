@@ -1,10 +1,8 @@
 package com.fadeevaaa.healthyeating.dishmodule.model.entity;
 
-import com.fadeevaaa.healthyeating.mealmodule.module.entity.Meal;
 import jakarta.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "dishes")
@@ -13,8 +11,10 @@ public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank
     private String name;
-    private short numberOfCaloriesPerBatch;
+    @PositiveOrZero
+    private int numberOfCaloriesPerBatch;
     @Embedded
     private Nutrient nutrient;
 
@@ -37,11 +37,11 @@ public class Dish {
         this.name = name;
     }
 
-    public short getNumberOfCaloriesPerBatch() {
+    public int getNumberOfCaloriesPerBatch() {
         return numberOfCaloriesPerBatch;
     }
 
-    public void setNumberOfCaloriesPerBatch(short numberOfCaloriesPerBatch) {
+    public void setNumberOfCaloriesPerBatch(int numberOfCaloriesPerBatch) {
         this.numberOfCaloriesPerBatch = numberOfCaloriesPerBatch;
     }
 
@@ -51,5 +51,13 @@ public class Dish {
 
     public void setNutrient(Nutrient nutrient) {
         this.nutrient = nutrient;
+    }
+
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "name='" + name + '\'' +
+                ", numberOfCaloriesPerBatch=" + numberOfCaloriesPerBatch +
+                '}';
     }
 }

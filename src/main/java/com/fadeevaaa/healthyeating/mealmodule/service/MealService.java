@@ -1,6 +1,5 @@
 package com.fadeevaaa.healthyeating.mealmodule.service;
 
-import com.fadeevaaa.healthyeating.dishmodule.model.entity.Dish;
 import com.fadeevaaa.healthyeating.mealmodule.module.entity.Meal;
 import org.springframework.stereotype.Service;
 

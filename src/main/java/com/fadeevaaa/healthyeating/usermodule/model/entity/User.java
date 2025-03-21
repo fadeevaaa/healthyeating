@@ -3,6 +3,10 @@ package com.fadeevaaa.healthyeating.usermodule.model.entity;
 import com.fadeevaaa.healthyeating.mealmodule.module.entity.Meal;
 import com.fadeevaaa.healthyeating.usermodule.model.enums.Purpose;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +17,21 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank
     private String name;
+    @Email
     private String email;
+    @Positive
     private byte age;
+    @Positive
     private short weight;
+    @Positive
     private short height;
     @Enumerated(EnumType.STRING)
     private Purpose purpose;
     @Column(name = "daily_norm")
-    short dailyNorm;
+    @PositiveOrZero
+    private short dailyNorm;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Meal> meals = new ArrayList<>();
 
