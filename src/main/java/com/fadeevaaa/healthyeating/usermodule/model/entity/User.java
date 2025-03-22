@@ -10,6 +10,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -22,18 +23,27 @@ public class User {
     @Email
     private String email;
     @Positive
-    private byte age;
+    private int age;
     @Positive
-    private short weight;
+    private int weight;
     @Positive
-    private short height;
+    private int height;
     @Enumerated(EnumType.STRING)
     private Purpose purpose;
     @Column(name = "daily_norm")
     @PositiveOrZero
-    private short dailyNorm;
+    private int dailyNorm;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Meal> meals = new ArrayList<>();
+
+    public User(String name, String email, int age, int weight, int height, Purpose purpose) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.purpose = purpose;
+    }
 
     public List<Meal> getMeals() {
         return meals;
@@ -70,27 +80,27 @@ public class User {
         this.email = email;
     }
 
-    public byte getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(byte age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public short getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(short weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
-    public short getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(short height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
@@ -102,11 +112,36 @@ public class User {
         this.purpose = purpose;
     }
 
-    public short getDailyNorm() {
+    public int getDailyNorm() {
         return dailyNorm;
     }
 
-    public void setDailyNorm(short dailyNorm) {
+    public void setDailyNorm(int dailyNorm) {
         this.dailyNorm = dailyNorm;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && age == user.age && weight == user.weight && height == user.height && Objects.equals(name, user.name) && Objects.equals(email, user.email) && purpose == user.purpose;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", purpose=" + purpose +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                ", height=" + height +
+                '}';
     }
 }

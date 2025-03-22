@@ -4,7 +4,6 @@ import com.fadeevaaa.healthyeating.dishmodule.model.entity.Dish;
 import com.fadeevaaa.healthyeating.usermodule.model.entity.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -25,14 +24,12 @@ public class Meal {
     private LocalDateTime createDateTime;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    @NotNull
     private User user;
     @ManyToMany()
     @JoinTable(name = "meal_dish",
             joinColumns = @JoinColumn(name = "meal_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
-    @NotBlank
     private List<Dish> dishes = new ArrayList<>();
     public Meal() {
     }

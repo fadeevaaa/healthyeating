@@ -19,7 +19,7 @@ public class DishController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void addUser(@RequestBody Dish dish) {
+    public void addDish(@RequestBody Dish dish) {
         dishService.create(dish);
     }
 }

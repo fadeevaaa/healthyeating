@@ -2,6 +2,7 @@ package com.fadeevaaa.healthyeating.dishmodule.service;
 
 import com.fadeevaaa.healthyeating.dishmodule.model.entity.Dish;
 import com.fadeevaaa.healthyeating.dishmodule.repository.DishRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,7 +15,7 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Dish create(Dish dish) {
+    public Dish create(@Valid Dish dish) {
         return dishRepository.save(dish);
     }
 }

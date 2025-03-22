@@ -1,6 +1,7 @@
 package com.fadeevaaa.healthyeating.dishmodule.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 
@@ -16,6 +17,7 @@ public class Dish {
     @PositiveOrZero
     private int numberOfCaloriesPerBatch;
     @Embedded
+    @Valid
     private Nutrient nutrient;
 
     public Dish() {

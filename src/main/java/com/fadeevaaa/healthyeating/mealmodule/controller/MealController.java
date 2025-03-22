@@ -17,7 +17,7 @@ public class MealController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void addUser(@RequestBody Meal meal) {
+    public void addMeal(@RequestBody Meal meal) {
         mealService.create(meal);
     }
 }
