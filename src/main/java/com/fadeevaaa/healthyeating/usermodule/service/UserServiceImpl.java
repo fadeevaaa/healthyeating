@@ -4,6 +4,7 @@ import com.fadeevaaa.healthyeating.usermodule.model.entity.User;
 import com.fadeevaaa.healthyeating.usermodule.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,10 +17,11 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    public User create(@Valid User user) {
+    public ResponseEntity<?> create(@Valid User user) {
         int dailyNorm = calculateDailyNorm(user.getWeight(), user.getHeight(), user.getAge());
         user.setDailyNorm(dailyNorm);
-        return userRepository.save(user);
+        userRepository.save(user);
+        return ResponseEntity.ok().build();
     }
 
     public int calculateDailyNorm(int weight, int height, int age) {

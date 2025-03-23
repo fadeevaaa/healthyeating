@@ -3,7 +3,6 @@ package com.fadeevaaa.healthyeating.usermodule.service;
 import com.fadeevaaa.healthyeating.usermodule.model.entity.User;
 import com.fadeevaaa.healthyeating.usermodule.model.enums.Purpose;
 import com.fadeevaaa.healthyeating.usermodule.repository.UserRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,14 +28,9 @@ public class UserServiceImplTest {
         verify(userRepository).save(user);
     }
 
-//    @Test
-//    void createWithoutNameFailedTest() {
-//        user.setName(null);
-//        assertEquals(0, userServiceImpl.create(user));
-//    }
-//
-//    @Test
-//    void calculateDailyNorm() {
-//        assertEquals(1699, user.getDailyNorm());
-//    }
+    @Test
+    void calculateDailyNorm() {
+        int actual = userServiceImpl.calculateDailyNorm(user.getWeight(), user.getHeight(), user.getAge());
+        assertEquals(1699, actual);
+    }
 }

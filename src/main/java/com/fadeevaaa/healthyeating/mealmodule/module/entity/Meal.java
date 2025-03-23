@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "meals")
@@ -32,6 +33,12 @@ public class Meal {
     )
     private List<Dish> dishes = new ArrayList<>();
     public Meal() {
+    }
+
+    public Meal(String name, User user, List<Dish> dishes) {
+        this.name = name;
+        this.user = user;
+        this.dishes = dishes;
     }
 
     public long getId() {
@@ -72,5 +79,17 @@ public class Meal {
 
     public void setDishes(List<Dish> dishes) {
         this.dishes = dishes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Meal meal = (Meal) o;
+        return Objects.equals(name, meal.name) && Objects.equals(user, meal.user) && Objects.equals(dishes, meal.dishes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, user, dishes);
     }
 }

@@ -5,6 +5,8 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "dishes")
 public class Dish {
@@ -21,6 +23,11 @@ public class Dish {
     private Nutrient nutrient;
 
     public Dish() {
+    }
+
+    public Dish(String name, int numberOfCaloriesPerBatch) {
+        this.name = name;
+        this.numberOfCaloriesPerBatch = numberOfCaloriesPerBatch;
     }
 
     public long getId() {
@@ -61,5 +68,17 @@ public class Dish {
                 "name='" + name + '\'' +
                 ", numberOfCaloriesPerBatch=" + numberOfCaloriesPerBatch +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Dish dish = (Dish) o;
+        return numberOfCaloriesPerBatch == dish.numberOfCaloriesPerBatch && Objects.equals(name, dish.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, numberOfCaloriesPerBatch);
     }
 }

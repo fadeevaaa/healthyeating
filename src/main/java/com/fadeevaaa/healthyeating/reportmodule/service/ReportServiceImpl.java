@@ -4,11 +4,14 @@ import com.fadeevaaa.healthyeating.dishmodule.model.entity.Dish;
 import com.fadeevaaa.healthyeating.mealmodule.module.entity.Meal;
 import com.fadeevaaa.healthyeating.mealmodule.repository.MealRepository;
 import com.fadeevaaa.healthyeating.reportmodule.dto.MealReportDto;
+import com.fadeevaaa.healthyeating.usermodule.model.entity.User;
 import com.fadeevaaa.healthyeating.usermodule.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,13 +48,19 @@ public class ReportServiceImpl implements ReportService{
 
     public String checkComplianceWithNorm(long id, Date date) {
         List<Meal> meals = listOfUserMealsPerDay(id, date);
+        Optional<User> optionalUser = userRepository.findById(id);
         int sumOfCaloriesPerDay = calculateCaloriesPerDay(meals);
-        int dailyNorm = userRepository.findById(id).get().getDailyNorm();
+        int dailyNorm;
 
-        if (sumOfCaloriesPerDay > dailyNorm) {
-            return "Сумма калорий превышает дневную норму.";
+        try {
+            dailyNorm = optionalUser.get().getDailyNorm();
+            if (sumOfCaloriesPerDay > dailyNorm) {
+                return "Сумма калорий превышает дневную норму.";
+            }
+            else return "Пользователь уложился в дневную норму калорий.";
+        } catch (NoSuchElementException e) {
+            return e.getMessage();
         }
-        else return "Пользователь уложился в дневную норму калорий.";
     }
 
     @Override
