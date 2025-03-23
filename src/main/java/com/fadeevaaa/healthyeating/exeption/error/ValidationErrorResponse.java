@@ -1,4 +1,4 @@
-package com.fadeevaaa.healthyeating.exeption.validationerror;
+package com.fadeevaaa.healthyeating.exeption.error;
 
 import java.util.List;
 

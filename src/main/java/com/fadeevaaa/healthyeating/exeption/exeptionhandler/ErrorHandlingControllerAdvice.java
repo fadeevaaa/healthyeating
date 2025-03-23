@@ -1,7 +1,8 @@
 package com.fadeevaaa.healthyeating.exeption.exeptionhandler;
 
-import com.fadeevaaa.healthyeating.exeption.validationerror.ValidationErrorResponse;
-import com.fadeevaaa.healthyeating.exeption.validationerror.Violation;
+import com.fadeevaaa.healthyeating.exeption.error.ErrorResponse;
+import com.fadeevaaa.healthyeating.exeption.error.ValidationErrorResponse;
+import com.fadeevaaa.healthyeating.exeption.error.Violation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -28,5 +30,12 @@ public class ErrorHandlingControllerAdvice {
                 )
                 .collect(Collectors.toList());
         return new ValidationErrorResponse(violations);
+    }
+
+    @ResponseBody
+    @ExceptionHandler(NoSuchElementException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleException(NoSuchElementException exception) {
+        return new ErrorResponse(exception.getMessage());
     }
 }

@@ -25,7 +25,15 @@ public class ReportServiceImpl implements ReportService{
         this.userRepository = userRepository;
     }
 
+    private void checkUserByID(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) {
+            throw new NoSuchElementException("Пользователь не найден.");
+        }
+    }
+
     public String generateDailyReport(long id, Date date) {
+        checkUserByID(id);
         List<Meal> meals = listOfUserMealsPerDay(id, date);
         long mealsCount = meals.size();
         int sumOfCalories = calculateCaloriesPerDay(meals);
@@ -47,24 +55,20 @@ public class ReportServiceImpl implements ReportService{
     }
 
     public String checkComplianceWithNorm(long id, Date date) {
+        checkUserByID(id);
         List<Meal> meals = listOfUserMealsPerDay(id, date);
-        Optional<User> optionalUser = userRepository.findById(id);
         int sumOfCaloriesPerDay = calculateCaloriesPerDay(meals);
         int dailyNorm;
-
-        try {
-            dailyNorm = optionalUser.get().getDailyNorm();
-            if (sumOfCaloriesPerDay > dailyNorm) {
-                return "Сумма калорий превышает дневную норму.";
-            }
-            else return "Пользователь уложился в дневную норму калорий.";
-        } catch (NoSuchElementException e) {
-            return e.getMessage();
+        dailyNorm = userRepository.findById(id).get().getDailyNorm();
+        if (sumOfCaloriesPerDay > dailyNorm) {
+            return "Сумма калорий превышает дневную норму.";
         }
+        else return "Пользователь уложился в дневную норму калорий.";
     }
 
     @Override
     public List<MealReportDto> generateFoodHistoryByDay(long id) {
+        checkUserByID(id);
         List<Date> dates = mealRepository.findAllGroupedByUserAndDateIgnoringTime(id);
         return dates.stream().map(date -> convertToMealReportDto(date, id)).collect(Collectors.toList());
     }

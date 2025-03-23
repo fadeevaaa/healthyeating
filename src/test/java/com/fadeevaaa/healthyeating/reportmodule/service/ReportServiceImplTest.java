@@ -38,6 +38,7 @@ public class ReportServiceImplTest {
 
     @Test
     void generateDailyReportTest() {
+        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
         when(mealRepository.findByDate(date, 1L)).thenReturn(meals);
         String expected = "Количество приемов пищи: 2\nСумма калорий: 160";
         Assertions.assertEquals(expected,
@@ -46,18 +47,18 @@ public class ReportServiceImplTest {
 
     @Test
     void checkComplianceWithNormSuccessfulTest() {
+        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
         user.setDailyNorm(200);
         when(mealRepository.findByDate(date, 1L)).thenReturn(meals);
-        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
         String expected = "Пользователь уложился в дневную норму калорий.";
         Assertions.assertEquals(expected, reportServiceImpl.checkComplianceWithNorm(1, date));
     }
 
     @Test
     void checkComplianceWithNormFailedTest() {
+        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
         user.setDailyNorm(100);
         when(mealRepository.findByDate(date, 1L)).thenReturn(meals);
-        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
         String expected = "Сумма калорий превышает дневную норму.";
         Assertions.assertEquals(expected, reportServiceImpl.checkComplianceWithNorm(1, date));
     }

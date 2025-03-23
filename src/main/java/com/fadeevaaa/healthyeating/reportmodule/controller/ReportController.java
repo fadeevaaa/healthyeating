@@ -2,11 +2,13 @@ package com.fadeevaaa.healthyeating.reportmodule.controller;
 
 import com.fadeevaaa.healthyeating.reportmodule.dto.MealReportDto;
 import com.fadeevaaa.healthyeating.reportmodule.service.ReportService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/reports/{id}")
