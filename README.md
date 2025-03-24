@@ -29,8 +29,7 @@ mvn spring-boot:run
 - *Настройка переменных окружения в файле application.yml для конфигурации приложения:*
   
   `server:
-  
-  port: 8081
+    port: 8081
   
 spring:
 
