@@ -49,3 +49,49 @@ mvn spring-boot:run
     
         ddl-auto: update
   ```
+
+###  Описание API
+Эндпоинт: /users
+Метод: POST
+Добавление нового пользователя.
+```
+{
+    "name" : "Ivan",
+    "email" : "vanya@gmail.com",
+    "age" : "25",
+    "weight" : "72",
+    "height" : "175",
+    "purpose" : "MAINTENANCE"
+}
+```
+
+Эндпоинт: /dishes
+Метод: POST
+Добавление нового блюда.
+```
+{
+    "name" : "яблоко",
+    "numberOfCaloriesPerBatch" : "100",
+    "nutrient" : {
+        "proteins" : "0.4", 
+        "fats" : "0.4", 
+        "carbohydrates" : "9.8"
+    }
+}
+```
+
+Эндпоинт: /meals
+Метод: POST
+Добавление приема пищи для пользователя.
+```
+{
+    "name" : "перекус",
+    "user" : {
+        "id" : "1"
+    },
+    "dishes" : [
+        {"id" : "1"}
+    ]
+}
+```
+
