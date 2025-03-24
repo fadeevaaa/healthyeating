@@ -29,23 +29,24 @@ mvn spring-boot:run
 - *Настройка переменных окружения в файле application.yml для конфигурации приложения:*
   
   `server:
+  
     port: 8081
   
-spring:
+  spring:
 
-  datasource:
+    datasource:
   
-    url: jdbc:postgresql://localhost:5432/healthy_eating
+      url: jdbc:postgresql://localhost:5432/healthy_eating
     
-    username: postgres
+      username: postgres
     
-    password: fadeevaaa
+      password: fadeevaaa
     
-  jpa:
+    jpa:
   
-    hibernate:
+      hibernate:
     
-      ddl-auto: update`
+        ddl-auto: update`
 
   spring.datasource.url=jdbc:postgresql://localhost:5432/your_database_name
   
