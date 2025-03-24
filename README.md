@@ -95,3 +95,23 @@ mvn spring-boot:run
 }
 ```
 
+- Эндпоинт: /reports/{id}
+- Метод: GET
+- Отчет за день с суммой всех калорий и приемов пищи.
+```
+http://localhost:8081/reports/1?date=2025-03-24
+```
+
+- Эндпоинт: /reports/{id}/comparison
+- Метод: GET
+- Проверка, уложился ли пользователь в свою дневную норму калорий.
+```
+http://localhost:8081/reports/1/comparison?date=2025-03-24
+```
+
+- Эндпоинт: /reports/{id}/history
+- Метод: GET
+- История питания по дням.
+```
+http://localhost:8081/reports/1/history
+```
