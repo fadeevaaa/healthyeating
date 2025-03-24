@@ -24,9 +24,7 @@
 git clone https://github.com/fadeevaaa/healthyeating.git
 2. *Устанавливаем зависимости (для сборки проекта используйте Maven). Переходим в папку с проектом, выполняем команду:*
 mvn clean install
-3. *Запускаем приложение с помощью команды Maven:*
-mvn spring-boot:run
-4. *Настраиваем переменные окружения в файле application.yml для конфигурации приложения:*
+3. *Настраиваем переменные окружения в файле application.yml для конфигурации приложения:*
   
   ```
   server:
@@ -49,6 +47,8 @@ mvn spring-boot:run
     
         ddl-auto: update
   ```
+4. *Запускаем приложение с помощью команды Maven:*
+mvn spring-boot:run
 
 ###  Описание API
 - Эндпоинт: /users
