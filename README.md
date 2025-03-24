@@ -1,4 +1,6 @@
-# Технологии: 
+# Healthy eating
+---
+Технологии: 
 Java
 Spring Boot
 Spring Data JPA
