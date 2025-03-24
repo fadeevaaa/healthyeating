@@ -28,7 +28,8 @@ mvn clean install
 mvn spring-boot:run
 - *Настройка переменных окружения в файле application.yml для конфигурации приложения:*
   
-  ```server:
+  ```
+  server:
   
     port: 8081
   
@@ -46,7 +47,8 @@ mvn spring-boot:run
   
       hibernate:
     
-        ddl-auto: update```
+        ddl-auto: update
+  ```
 
   spring.datasource.url=jdbc:postgresql://localhost:5432/your_database_name
   
