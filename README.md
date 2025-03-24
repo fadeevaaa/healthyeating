@@ -20,7 +20,7 @@
 - Maven
 
 ### Установка и запуск
-- *Клонирование репозитория:*
+*1. Клонирование репозитория:*
 git clone https://github.com/fadeevaaa/healthyeating.git
 - *Установка зависимостей (используйте Maven для сборки проекта):*
 mvn clean install
