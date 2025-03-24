@@ -37,11 +37,11 @@ mvn spring-boot:run
 
     datasource:
   
-      url: jdbc:postgresql://localhost:5432/healthy_eating
+      url: jdbc:postgresql://localhost:5432/your_database_name
     
-      username: postgres
+      username: your_username
     
-      password: fadeevaaa
+      password: your_password
     
     jpa:
   
@@ -49,11 +49,3 @@ mvn spring-boot:run
     
         ddl-auto: update
   ```
-
-  spring.datasource.url=jdbc:postgresql://localhost:5432/your_database_name
-  
-  spring.datasource.username=your_username
-  
-  spring.datasource.password=your_password
-  
-  spring.jpa.hibernate.ddl-auto=update
