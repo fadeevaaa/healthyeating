@@ -28,6 +28,9 @@ mvn clean install
 mvn spring-boot:run
 - *Настройка переменных окружения в файле application.yml для конфигурации приложения:*
   spring.datasource.url=jdbc:postgresql://localhost:5432/your_database_name
+  
   spring.datasource.username=your_username
+  
   spring.datasource.password=your_password
+  
   spring.jpa.hibernate.ddl-auto=update
