@@ -27,15 +27,25 @@ mvn clean install
 - *Запуск приложения. Запустите приложение с помощью команды Maven:*
 mvn spring-boot:run
 - *Настройка переменных окружения в файле application.yml для конфигурации приложения:*
+  
   `server:
+  
   port: 8081
+  
 spring:
+
   datasource:
+  
     url: jdbc:postgresql://localhost:5432/healthy_eating
+    
     username: postgres
+    
     password: fadeevaaa
+    
   jpa:
+  
     hibernate:
+    
       ddl-auto: update`
 
   spring.datasource.url=jdbc:postgresql://localhost:5432/your_database_name
