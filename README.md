@@ -30,9 +30,9 @@ mvn spring-boot:run
   
   `server:
   
-    port: 8081
+    port: 8081`
   
-  spring:
+  `spring:
 
     datasource:
   
